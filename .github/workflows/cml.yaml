@@ -7,7 +7,6 @@ jobs:
     steps:
       - uses: iterative/setup-cml@v1
       - uses: actions/checkout@v3
-# rerun job
 #        with:
 #          ref: ${{ github.event.pull_request.head.sha }}
 #                    echo '![](./plot.png "Confusion Matrix")' >> report.md
@@ -18,4 +17,4 @@ jobs:
           cat metrics.txt >> report.md
           cml comment create report.md
         env:
-          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO_TOKEN: ${{ secrets.TOKEN }}
