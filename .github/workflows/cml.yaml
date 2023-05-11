@@ -13,7 +13,8 @@ jobs:
 #          ref: ${{ github.event.pull_request.head.sha }}
 #                    echo '![](./plot.png "Confusion Matrix")' >> report.md
 #                   cml comment create report.md
-      - id: get-comment-body
+      - name: upload artifacts
+        uses: actions/upload-artifact@v3
         run: |
           pip install -r requirements.txt
           python train.py  # generate plot.png
@@ -24,6 +25,8 @@ jobs:
           echo "$(pwd)" >> report.md
           echo '![](./plot.png "Confusion Matrix")' >> report.md
           body="$(cat report.md)"
+        path: plot.png
+        path: report.md
       - name: Create commit comment
         uses: peter-evans/commit-comment@v2
         with: 
