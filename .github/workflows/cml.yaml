@@ -7,8 +7,8 @@ jobs:
     steps:
       - uses: iterative/setup-cml@v1
       - uses: actions/checkout@v3
-        with:
-          ref: ${{ github.event.pull_request.head.sha }}
+#        with:
+#          ref: ${{ github.event.pull_request.head.sha }}
 #                    echo '![](./plot.png "Confusion Matrix")' >> report.md
       - run: |
           pip install -r requirements.txt
