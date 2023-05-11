@@ -20,6 +20,7 @@ jobs:
           # Create CML report
           cat metrics.txt >> report.md
           plotfile="$(ls -l plot.png)"
+          echo "cml version: $(cml --version)" >> report.md
           echo "$plotfile" >> report.md
           echo "$(pwd)" >> report.md
           echo '![](./plot.png)' >> report.md
