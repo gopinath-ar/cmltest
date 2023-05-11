@@ -28,7 +28,10 @@ jobs:
         uses: peter-evans/commit-comment@v2
         with: 
           sha: ${{ github.sha }}
-          body: ${{ steps.get-comment-body.outputs.body }}
+          body: |
+            This is a multi-line test comment
+            - With GitHub **Markdown** :sparkles:
+            - Created by [commit-comment][1]
       # - name: Create comment
       #   uses: peter-evans/create-or-update-comment@v3
       #   with:
