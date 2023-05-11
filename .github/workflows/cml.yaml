@@ -29,6 +29,8 @@ jobs:
         with:
           name: plot
           path: plot.png
+        with:
+          name: report
           path: report.md
       - name: Create commit comment
         uses: peter-evans/commit-comment@v2
