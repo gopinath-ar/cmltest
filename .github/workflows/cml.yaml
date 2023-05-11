@@ -1,4 +1,3 @@
-# build artifact
 name: CML
 on: [push]
 jobs:
@@ -14,8 +13,7 @@ jobs:
 #          ref: ${{ github.event.pull_request.head.sha }}
 #                    echo '![](./plot.png "Confusion Matrix")' >> report.md
 #                   cml comment create report.md
-      - name: upload artifacts
-        uses: actions/upload-artifact@v3
+      - name: run training
         run: |
           pip install -r requirements.txt
           python train.py  # generate plot.png
@@ -26,8 +24,12 @@ jobs:
           echo "$(pwd)" >> report.md
           echo '![](./plot.png "Confusion Matrix")' >> report.md
           body="$(cat report.md)"
-        path: plot.png
-        path: report.md
+      - name: upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: plot
+          path: plot.png
+          path: report.md
       - name: Create commit comment
         uses: peter-evans/commit-comment@v2
         with: 
