@@ -25,6 +25,8 @@ jobs:
           echo '![](./plot.png "Confusion Matrix")' >> report.md
           body="$(cat report.md)"
           cml comment create --publish report.md
+        env:
+          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: upload artifacts
         uses: actions/upload-artifact@v3
         with:
