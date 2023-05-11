@@ -24,6 +24,7 @@ jobs:
           echo "$(pwd)" >> report.md
           echo '![](./plot.png "Confusion Matrix")' >> report.md
           body="$(cat report.md)"
+          cml comment create --publish report.md
       - name: upload artifacts
         uses: actions/upload-artifact@v3
         with:
