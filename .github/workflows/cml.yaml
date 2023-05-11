@@ -12,11 +12,23 @@ jobs:
 #        with:
 #          ref: ${{ github.event.pull_request.head.sha }}
 #                    echo '![](./plot.png "Confusion Matrix")' >> report.md
+#                   cml comment create report.md
       - run: |
           pip install -r requirements.txt
           python train.py  # generate plot.png
           # Create CML report
           cat metrics.txt >> report.md
-          cml comment create report.md
+          echo '![](./plot.png "Confusion Matrix")' >> report.md
+      - name: Create comment
+        uses: peter-evans/create-or-update-comment@v3
+        with:
+          issue-number: 1
+          body: |
+            This is a multi-line test comment
+            - With GitHub **Markdown** :sparkles:
+            - Created by [create-or-update-comment][1]
+
+            [1]: https://github.com/peter-evans/create-or-update-comment
+          reactions: '+1'
         env:
-          REPO_TOKEN: ${{ secrets.TOKEN }}
+          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
