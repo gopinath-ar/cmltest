@@ -20,6 +20,7 @@ jobs:
           cat metrics.txt >> report.md
           plotfile="$(ls -l plot.png)"
           echo "$plotfile" >> report.md
+          echo "$(pwd)" >> report.md
           echo '![](./plot.png "Confusion Matrix")' >> report.md
       - name: Create comment
         uses: peter-evans/create-or-update-comment@v3
