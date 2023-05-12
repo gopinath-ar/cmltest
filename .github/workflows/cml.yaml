@@ -1,9 +1,9 @@
 name: CML
 on: [push]
 jobs:
-  train-and-report:
+  launch-runner:
     runs-on: ubuntu-latest
-    container: docker://ghcr.io/iterative/cml:latest
+#    container: docker://ghcr.io/iterative/cml:latest
     steps:
 #      - uses: iterative/setup-cml@v1
       - uses: actions/setup-python@v4
@@ -13,7 +13,12 @@ jobs:
 #          ref: ${{ github.event.pull_request.head.sha }}
 #                    echo '![](./plot.png "Confusion Matrix")' >> report.md
 #                   cml comment create report.md
-      - name: run training
+  train-and-report:
+    needs: launch-runner
+    runs-on: [self-hosted, cml-gpu]
+    steps:
+      - uses: actions/checkout@v3
+      - name: train model
         run: |
           pip install -r requirements.txt
           python train.py  # generate plot.png
