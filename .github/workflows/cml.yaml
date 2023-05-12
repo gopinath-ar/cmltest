@@ -22,7 +22,8 @@ jobs:
           echo '![](./plot.png)' >> report.md
           body="$(cat report.md)"
           cml comment create --publish report.md
-    # checkout branch
+      env:
+          REPO_TOKEN: $TOKEN
     - name: Create commit comment
       uses: peter-evans/commit-comment@v2
       with: 
