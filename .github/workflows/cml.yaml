@@ -1,65 +1,77 @@
-name: CML
 on: [push]
-jobs:
-  launch-runner:
-    runs-on: ubuntu-latest
-#    container: docker://ghcr.io/iterative/cml:latest
-    steps:
-#      - uses: iterative/setup-cml@v1
-      - uses: actions/setup-python@v4
-      - uses: actions/checkout@v3
-# modified token
-#        with:
-#          ref: ${{ github.event.pull_request.head.sha }}
-#                    echo '![](./plot.png "Confusion Matrix")' >> report.md
-#                   cml comment create report.md
-  train-and-report:
-    needs: launch-runner
-    runs-on: [self-hosted, cml-gpu]
-    steps:
-      - uses: actions/checkout@v3
-      - name: train model
-        run: |
-          pip install -r requirements.txt
-          python train.py  # generate plot.png
-          # Create CML report
-          cat metrics.txt >> report.md
-          plotfile="$(ls -l plot.png)"
-          echo "cml version: $(cml --version)" >> report.md
-          echo "$plotfile" >> report.md
-          echo "$(pwd)" >> report.md
-          echo '![](./plot.png)' >> report.md
-          body="$(cat report.md)"
-          cml comment create --publish report.md
-        env:
-          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: upload artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: plot and report files
-          path: |
-            plot.png
-            report.md
-      - name: Create commit comment
-        uses: peter-evans/commit-comment@v2
-        with: 
-          sha: ${{ github.sha }}
-          body: |
-            This is a multi-line test comment
-            - With GitHub **Markdown** :sparkles:
-            - Created by [commit-comment][1]
-            ![confusion matrix](./plot.png)
-      # - name: Create comment
-      #   uses: peter-evans/create-or-update-comment@v3
-      #   with:
-      #     issue-number: 1
-      #     # body: |
-      #     #   This is a multi-line test comment, test issue #1
-      #     #   - With GitHub **Markdown** :sparkles:
-      #     #   - Created by [create-or-update-comment][1]
 
-      #     #   [1]: https://github.com/peter-evans/create-or-update-comment
-      #     reactions: '+1'
-      #     body-path: report.md
-        env:
-          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+name: self-hosted-example
+
+jobs:
+  simpleExample:
+    runs-on: self-hosted
+    steps:
+    # checkout branch
+    - uses: actions/checkout@master
+
+
+# name: CML
+# on: [push]
+# jobs:
+#   launch-runner:
+#     runs-on: ubuntu-latest
+# #    container: docker://ghcr.io/iterative/cml:latest
+#     steps:
+# #      - uses: iterative/setup-cml@v1
+#       - uses: actions/setup-python@v4
+#       - uses: actions/checkout@v3
+# # modified token
+# #        with:
+# #          ref: ${{ github.event.pull_request.head.sha }}
+# #                    echo '![](./plot.png "Confusion Matrix")' >> report.md
+# #                   cml comment create report.md
+#   train-and-report:
+#     needs: launch-runner
+#     runs-on: [self-hosted, cml-gpu]
+#     steps:
+#       - uses: actions/checkout@v3
+#       - name: train model
+#         run: |
+#           pip install -r requirements.txt
+#           python train.py  # generate plot.png
+#           # Create CML report
+#           cat metrics.txt >> report.md
+#           plotfile="$(ls -l plot.png)"
+#           echo "cml version: $(cml --version)" >> report.md
+#           echo "$plotfile" >> report.md
+#           echo "$(pwd)" >> report.md
+#           echo '![](./plot.png)' >> report.md
+#           body="$(cat report.md)"
+#           cml comment create --publish report.md
+#         env:
+#           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#       - name: upload artifacts
+#         uses: actions/upload-artifact@v3
+#         with:
+#           name: plot and report files
+#           path: |
+#             plot.png
+#             report.md
+#       - name: Create commit comment
+#         uses: peter-evans/commit-comment@v2
+#         with: 
+#           sha: ${{ github.sha }}
+#           body: |
+#             This is a multi-line test comment
+#             - With GitHub **Markdown** :sparkles:
+#             - Created by [commit-comment][1]
+#             ![confusion matrix](./plot.png)
+#       # - name: Create comment
+#       #   uses: peter-evans/create-or-update-comment@v3
+#       #   with:
+#       #     issue-number: 1
+#       #     # body: |
+#       #     #   This is a multi-line test comment, test issue #1
+#       #     #   - With GitHub **Markdown** :sparkles:
+#       #     #   - Created by [create-or-update-comment][1]
+
+#       #     #   [1]: https://github.com/peter-evans/create-or-update-comment
+#       #     reactions: '+1'
+#       #     body-path: report.md
+#         env:
+#           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
