@@ -4,8 +4,8 @@ name: self-hosted-example
 
 jobs:
   simpleExample:
-#   self-hosted
-    runs-on: ubuntu-latest
+#   self-hosted ubuntu-latest
+    runs-on: self-hosted
     container: docker://ghcr.io/iterative/cml:latest
     steps:
     - uses: actions/checkout@master
@@ -20,12 +20,11 @@ jobs:
           echo "cml version: $(cml --version)" >> report.md
           echo "$plotfile" >> report.md
           echo "$(pwd)" >> report.md
-          echo "$REPO_TOKEN" >> report.md
           echo '![](./plot.png)' >> report.md
           body="$(cat report.md)"
           cml comment create --publish report.md
       env:
-          REPO_TOKEN:  ${{ secrets.GITHUB_TOKEN }}
+          REPO_TOKEN:  $TOKEN
     - name: Create commit comment
       uses: peter-evans/commit-comment@v2
       with: 
