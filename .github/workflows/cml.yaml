@@ -8,7 +8,14 @@ jobs:
     steps:
     # checkout branch
     - uses: actions/checkout@master
-
+    - name: Create commit comment
+      uses: peter-evans/commit-comment@v2
+      with: 
+        sha: ${{ github.sha }}
+        body: |
+            This is a multi-line test comment
+            - With GitHub **Markdown** :sparkles:
+            - Created by [commit-comment][1]
 
 # name: CML
 # on: [push]
