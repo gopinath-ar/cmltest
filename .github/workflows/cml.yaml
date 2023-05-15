@@ -5,8 +5,8 @@ name: self-hosted-example
 jobs:
   simpleExample:
 #   self-hosted ubuntu-latest
-    runs-on: self-hosted
-    container: docker://ghcr.io/iterative/cml:latest
+    runs-on: ubuntu-latest
+#    container: docker://ghcr.io/iterative/cml:latest
     steps:
     - uses: actions/checkout@master
     - uses: actions/setup-python@v4
