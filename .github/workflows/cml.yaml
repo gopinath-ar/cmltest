@@ -6,17 +6,18 @@ jobs:
   simpleExample:
 #   self-hosted ubuntu-latest
     runs-on: self-hosted
-    container: docker://ghcr.io/iterative/cml:latest
+#    container: docker://ghcr.io/iterative/cml:latest
     steps:
     - uses: actions/checkout@master
-    - uses: actions/setup-python@v4
-#    - uses: iterative/setup-cml@v1    
+#    - uses: actions/setup-python@v4
+    - uses: iterative/setup-cml@v1    
     - name: train model
       run: |
-          pip install -r requirements.txt
-          python train.py  # generate plot.png
+          # pip install -r requirements.txt
+          # python train.py  # generate plot.png
           # Create CML report
-          cat metrics.txt >> report.md
+          # cat metrics.txt >> report.md
+          echo "hello runner" >> report.md
           # echo '![](./plot.png)' >> report.md
           cml comment create --publish report.md
       env:
