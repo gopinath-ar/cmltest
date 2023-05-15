@@ -17,23 +17,18 @@ jobs:
           python train.py  # generate plot.png
           # Create CML report
           cat metrics.txt >> report.md
-          plotfile="$(ls -l plot.png)"
-          echo "cml version: $(cml --version)" >> report.md
-          echo "$plotfile" >> report.md
-          echo "$(pwd)" >> report.md
           echo '![](./plot.png)' >> report.md
-          body="$(cat report.md)"
           cml comment create --publish report.md
       env:
           REPO_TOKEN:  ${{ secrets.TOKEN }}
-    - name: Create commit comment
-      uses: peter-evans/commit-comment@v2
-      with: 
-        sha: ${{ github.sha }}
-        body: |
-            This is a multi-line test comment
-            - With GitHub **Markdown** :sparkles:
-            - Created by [commit-comment][1]
+#     - name: Create commit comment
+#       uses: peter-evans/commit-comment@v2
+#       with: 
+#         sha: ${{ github.sha }}
+#         body: |
+#             This is a multi-line test comment
+#             - With GitHub **Markdown** :sparkles:
+#             - Created by [commit-comment][1]
 
 # name: CML
 # on: [push]
