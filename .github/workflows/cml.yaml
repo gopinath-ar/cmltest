@@ -10,6 +10,7 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - uses: actions/setup-python@v4
+    - uses: iterative/setup-cml@v1    
     - name: train model
       run: |
           pip install -r requirements.txt
