@@ -6,11 +6,11 @@ jobs:
   simpleExample:
 #   self-hosted ubuntu-latest
     runs-on: self-hosted
-#    container: docker://ghcr.io/iterative/cml:latest
+    container: docker://ghcr.io/iterative/cml:latest
     steps:
     - uses: actions/checkout@master
     - uses: actions/setup-python@v4
-    - uses: iterative/setup-cml@v1    
+#    - uses: iterative/setup-cml@v1    
     - name: train model
       run: |
           pip install -r requirements.txt
