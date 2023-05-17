@@ -10,14 +10,13 @@ jobs:
     steps:
     - uses: actions/checkout@master
 #    - uses: actions/setup-python@v4  # testing cml-gpu self hosting
-#    - uses: iterative/setup-cml@v1   # not required in container
+    - uses: iterative/setup-cml@v1   # not required in container
     - name: train model
       run: |
           pip install -r requirements.txt
           python train.py  # generate plot.png
           # Create CML report
           cat metrics.txt >> report.md
-          echo "hello runner" >> report.md
           # echo '![](./plot.png)' >> report.md
           cml comment create --publish report.md
       env:
