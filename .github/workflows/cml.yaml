@@ -5,7 +5,7 @@ name: self-hosted-example
 jobs:
   simpleExample:
 #   self-hosted ubuntu-latest
-    runs-on: self-hosted
+    runs-on: cml-gpu
 #    container: docker://ghcr.io/iterative/cml:latest
     steps:
     - uses: actions/checkout@master
