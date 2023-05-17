@@ -10,7 +10,7 @@ jobs:
     steps:
     - uses: actions/checkout@master
 #    - uses: actions/setup-python@v4  # testing cml-gpu self hosting
-    - uses: iterative/setup-cml@v1    
+#    - uses: iterative/setup-cml@v1   # not required in container
     - name: train model
       run: |
           pip install -r requirements.txt
