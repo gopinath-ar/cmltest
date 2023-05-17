@@ -9,7 +9,7 @@ jobs:
 #    container: docker://ghcr.io/iterative/cml:latest
     steps:
     - uses: actions/checkout@master
-#    - uses: actions/setup-python@v4  # testing wsl self hosting
+#    - uses: actions/setup-python@v4  # testing wsl cml self hosting
     - uses: iterative/setup-cml@v1    
     - name: train model
       run: |
