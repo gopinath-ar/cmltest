@@ -21,7 +21,7 @@ jobs:
           # gpuinfo="$(nvidia-smi)"
           ## echo $gpuinfo >> report.md
           # echo '![](./plot.png)' >> report.md
-          cml comment create --publish report.md
+          cml comment create --publish report.md --repo https://github.com/gopinath-ar/cmltest/ --log debug
       env:
           REPO_TOKEN:  ${{ secrets.GITHUB_TOKEN }}
 #     - name: Create commit comment
