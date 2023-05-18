@@ -10,7 +10,7 @@ jobs:
 #    container: docker://ghcr.io/iterative/cml:0-dvc2-base1-gpu
     steps:
     - uses: actions/checkout@master
-#    - uses: actions/setup-python@v4  # testing cml-gpu self hosting
+#    - uses: actions/setup-python@v4  # testing cml-gpu self hosting#
 #    - uses: iterative/setup-cml@v1   # not required in container#
     - name: train model
       run: |
