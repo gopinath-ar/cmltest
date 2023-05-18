@@ -19,7 +19,7 @@ jobs:
           # Create CML report
           cat metrics.txt >> report.md
           # gpuinfo="$(nvidia-smi)"
-          # echo $gpuinfo >> report.md
+          ## echo $gpuinfo >> report.md
           # echo '![](./plot.png)' >> report.md
           cml comment create --publish report.md
       env:
