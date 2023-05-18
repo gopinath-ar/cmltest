@@ -23,7 +23,7 @@ jobs:
           # echo '![](./plot.png)' >> report.md
           cml comment create --publish report.md
       env:
-          REPO_TOKEN:  ${{ secrets.GITHUB_TOKEN }}
+          REPO_TOKEN:  ${{ secrets.TOKEN }}
 #     - name: Create commit comment
 #       uses: peter-evans/commit-comment@v2
 #       with: 
