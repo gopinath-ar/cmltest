@@ -15,7 +15,7 @@ jobs:
     - name: train model
       run: |
           # pip install -r requirements.txt
-          # python train.py  # generate plot.png
+          # python train.py  # generate plot.png#
           # Create CML report
           # cat metrics.txt >> report.md
           # gpuinfo="$(nvidia-smi)"
