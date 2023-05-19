@@ -26,7 +26,7 @@ jobs:
           # source $HOME/bin/torchenv/bin/activate
           # python gpuinfo.py > report.md
           
-          pip install --find-links ./cache --no-index tensorflow==2.12.0
+          pip install --find-links /home/runner/cache --no-index tensorflow==2.12.0
           python gpudocker.py > report.md
           cml comment create --publish report.md
       env:
