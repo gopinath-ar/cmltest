@@ -14,8 +14,12 @@ jobs:
 #    - uses: iterative/setup-cml@v1   # not required in container###
     - name: train model
       run: |
-          # pip install -r requirements.txt
-          # python train.py  # generate plot.png#
+          pip install -r requirements.txt
+          python train.py  # generate plot.png#
+          cat metrics.txt >> README.md
+          git add README.md
+          git commit -m "updated readme"
+          git push origin main
           # Create CML report
           # cat metrics.txt >> report.md
           # gpuinfo="$(nvidia-smi)"
@@ -26,9 +30,9 @@ jobs:
           # source $HOME/bin/torchenv/bin/activate
           # python gpuinfo.py > report.md #
           
-          pip install --find-links /home/runner/cache --no-index tensorflow==2.12.0
-          python gpudocker.py > report.md
-          cml comment create --publish report.md
+          # pip install --find-links /home/runner/cache --no-index tensorflow==2.12.0
+          # python gpudocker.py > report.md
+          # cml comment create --publish report.md
       env:
           REPO_TOKEN:  ${{ secrets.GITHUB_TOKEN }}
 #     - name: Create commit comment
