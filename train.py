@@ -21,9 +21,8 @@ y_pred = clf.predict(X_test)
 
 metrics = """
 Accuracy: {:10.4f}
-
-![Confusion Matrix](plot.png)
 """.format(acc)
+#  ![Confusion Matrix](plot.png)
 with open("metrics.txt", "w") as outfile:
     outfile.write(metrics)
 
