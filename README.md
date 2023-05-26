@@ -14,3 +14,6 @@ The only environmental variable set in `.github/workflows/cml.yaml` is `GITHUB_T
 Accuracy:     0.8680
 
 Accuracy:     0.8680
+
+Accuracy:     0.8600
+![](/data/plot.png)
