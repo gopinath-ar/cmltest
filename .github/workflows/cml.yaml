@@ -18,7 +18,7 @@ jobs:
           python train.py  # generate plot.png#
           cat metrics.txt >> README.md
           cp plot.png data/plot.png
-          ls -l *
+          git add data/plot.png
           echo  '![](/data/plot.png)' >> README.md
           git config --global user.email "gopinath@test.com"
           git config --global user.name "gopinath"
