@@ -17,6 +17,8 @@ jobs:
           pip install -r requirements.txt
           python train.py  # generate plot.png#
           cat metrics.txt >> README.md
+          cp plot.png data/plot.png
+          echo  '![](/data/plot.png)' >> report.md
           git config --global user.email "gopinath@test.com"
           git config --global user.name "gopinath"
           git add README.md
