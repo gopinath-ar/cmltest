@@ -17,3 +17,6 @@ Accuracy:     0.8680
 
 Accuracy:     0.8600
 ![](/data/plot.png)
+
+Accuracy:     0.8640
+![](/data/plot.png)
