@@ -20,8 +20,8 @@ jobs:
           git add data/plot.png
           echo  '![](/data/plot.png)' > README.md
           cat metrics.txt >> README.md
-          # git config --global user.email "gopinath@test.com"
-          # git config --global user.name "gopinath"
+          git config user.email "gopinath@test.com"
+          git config user.name "gopinath"
           git add README.md
           git commit -m "updated readme"
           git push origin main
