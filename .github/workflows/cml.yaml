@@ -14,17 +14,22 @@ jobs:
 #    - uses: iterative/setup-cml@v1   # not required in container###
     - name: train model
       run: |
-          pip install -r requirements.txt
-          python train.py  # generate plot.png#
-          cp plot.png data/plot.png
-          git add data/plot.png
-          echo  '![](/data/plot.png)' > README.md
-          cat metrics.txt >> README.md
-          git config user.email "gopinath@test.com"
-          git config user.name "gopinath"
-          git add README.md
-          git commit -m "updated readme"
-          git push origin main
+          TAG=$(date +"%Y%m%d%H%M")
+          docker build -t temp:TAG .
+          docker run --name "temp${TAG}" -it temp:TAG
+          docker rm "temp${TAG}"
+          # pip install -r requirements.txt
+          # python train.py  # generate plot.png#
+          # cp plot.png data/plot.png
+          # git add data/plot.png
+          # echo  '![](/data/plot.png)' > README.md
+          # cat metrics.txt >> README.md
+          # git config user.email "gopinath@test.com"
+          # git config user.name "gopinath"
+          # git add README.md
+          # git commit -m "updated readme"
+          # git push origin main
+          
           # Create CML report
           # cat metrics.txt >> report.md
           # gpuinfo="$(nvidia-smi)"
