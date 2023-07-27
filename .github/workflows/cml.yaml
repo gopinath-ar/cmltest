@@ -15,8 +15,8 @@ jobs:
     - name: train model
       run: |
           TAG=$(date +"%Y%m%d%H%M")
-          docker build -t temp:TAG .
-          docker run --name "temp${TAG}" -it temp:TAG
+          docker build -t "temp:${TAG}" .
+          docker run --name "temp${TAG}" -it temp:"${TAG}"
           docker rm "temp${TAG}"
           # pip install -r requirements.txt
           # python train.py  # generate plot.png#
