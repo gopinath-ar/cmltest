@@ -1,3 +1,3 @@
 ![](/data/plot.png)
 
-Accuracy:     0.8600
+Accuracy:     0.8640
